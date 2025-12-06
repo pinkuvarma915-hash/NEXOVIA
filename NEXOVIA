@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXOVIA Smart Glasses</title>
+
+<style>
+    body {
+        background-color: #0a0a0a;
+        color: white;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background: linear-gradient(to right, #003cff, #00e1ff);
+        padding: 20px;
+        text-align: center;
+        font-size: 28px;
+        font-weight: bold;
+        color: white;
+        text-shadow: 0 0 10px cyan;
+    }
+
+    section {
+        border-radius: 15px;
+        padding: 15px;
+        margin: 20px;
+        color: black;
+        font-weight: bold;
+        box-shadow: 0 0 10px #000;
+    }
+
+    /* SECTION COLORS */
+    .sec1 { background:#00f2ff; }
+    .sec2 { background:#ffdd00; }
+    .sec3 { background:#ff4d4d; }
+    .sec4 { background:#8aff00; }
+    .sec5 { background:#ff8af5; }
+    .sec6 { background:#8ab4ff; }
+    .sec7 { background:#ffa64d; }
+    .sec8 { background:#7dffea; }
+    .sec9 { background:#d28aff; }
+    .sec10 { background:#b6ff4d; }
+
+    button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    input {
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        width: 80%;
+        margin-top: 10px;
+    }
+
+    .hidden { display: none; }
+</style>
+
+</head>
+<body>
+
+<header>NEXOVIA SMART GLASSES</header>
+
+<!-- PASSWORD FIRST -->
+
+<section id="passwordSection" class="sec3">
+    <h2>Password Required</h2>
+    <input type="password" id="pass" placeholder="Enter Password">
+    <br><br>
+    <button onclick="checkPass()">Enter</button>
+    <p id="passMsg"></p>
+</section>
+
+<!-- MAIN DASHBOARD -->
+
+<div id="main" class="hidden">
+
+<section class="sec1">
+    <h2>1️⃣ Bluetooth</h2>
+    <p id="btStatus">Bluetooth Connected</p>
+    <button onclick="toggleBT()">Toggle Bluetooth</button>
+</section>
+
+<section class="sec2">
+    <h2>2️⃣ User Info</h2>
+    <input type="text" id="name" placeholder="Enter Name">
+    <input type="number" id="age" placeholder="Age">
+    <button onclick="saveInfo()">Save</button>
+    <p id="savedInfo"></p>
+</section>
+
+<section class="sec3">
+    <h2>3️⃣ Password</h2>
+    <p>System Password: <b>nexovia123</b></p>
+</section>
+
+<section class="sec4">
+    <h2>4️⃣ Image Recognition</h2>
+    <button onclick="alert('Camera scanning...')">Scan Image</button>
+</section>
+
+<section class="sec5">
+    <h2>5️⃣ Contacts</h2>
+    <input type="text" id="contactName" placeholder="New Contact Name">
+    <button onclick="saveContact()">Save</button>
+    <p id="contactList"></p>
+</section>
+
+<section class="sec6">
+    <h2>6️⃣ Wi-Fi</h2>
+    <p id="wifi">Wi-Fi Connected</p>
+    <button onclick="toggleWifi()">Toggle WiFi</button>
+</section>
+
+<section class="sec7">
+    <h2>7️⃣ Battery</h2>
+    <p id="batteryLevel">Battery: 89%</p>
+</section>
+
+<section class="sec8">
+    <h2>8️⃣ Storage</h2>
+    <p>Used: 32GB / 64GB</p>
+</section>
+
+<section class="sec9">
+    <h2>9️⃣ Camera</h2>
+    <button onclick="alert('Camera opened!')">Open Camera</button>
+</section>
+
+<section class="sec10">
+    <h2>🔟 Settings</h2>
+    <button onclick="alert('Settings opened!')">Open Settings</button>
+</section>
+
+</div>
+
+<script>
+const password = "nexovia123";
+
+function checkPass(){
+    let p = document.getElementById("pass").value;
+    if(p === password){
+        document.getElementById("passwordSection").classList.add("hidden");
+        document.getElementById("main").classList.remove("hidden");
+    } else {
+        document.getElementById("passMsg").textContent = "Wrong Password!";
+    }
+}
+
+let bt = true;
+function toggleBT(){
+    bt = !bt;
+    document.getElementById("btStatus").textContent = bt ? "Bluetooth Connected" : "Bluetooth Off";
+}
+
+function saveInfo(){
+    let n = document.getElementById("name").value;
+    let a = document.getElementById("age").value;
+    document.getElementById("savedInfo").textContent = "User: " + n + " | Age: " + a;
+}
+
+function toggleWifi(){
+    let w = document.getElementById("wifi");
+    w.textContent = w.textContent.includes("Connected") ? "Wi-Fi Off" : "Wi-Fi Connected";
+}
+
+function saveContact(){
+    let c = document.getElementById("contactName").value;
+    document.getElementById("contactList").innerHTML += c + "<br>";
+}
+</script>
+
+</body>
+</html>
